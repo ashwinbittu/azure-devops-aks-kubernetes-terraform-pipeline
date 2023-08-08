@@ -35,36 +35,36 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
   identity { type = "SystemAssigned" }
 
 # Add On Profiles
-  addon_profile {
-    azure_policy { enabled = true }
-    oms_agent {
-      enabled                    = true
-      log_analytics_workspace_id = azurerm_log_analytics_workspace.insights.id
-    }
-  }
+#  addon_profile {
+#    azure_policy { enabled = true }
+#    oms_agent {
+#      enabled                    = true
+#      log_analytics_workspace_id = azurerm_log_analytics_workspace.insights.id
+#    }
+#  }
 
 # RBAC and Azure AD Integration Block
-role_based_access_control {
-  enabled = true
-  azure_active_directory {
-    managed                = true
-    admin_group_object_ids = [azuread_group.aks_administrators.id]
-  }
-}  
+#role_based_access_control {
+#  enabled = true
+#  azure_active_directory {
+#    managed                = true
+#    admin_group_object_ids = [azuread_group.aks_administrators.id]
+#  }
+#}  
 
 # Windows Admin Profile
-windows_profile {
-  admin_username            = var.windows_admin_username
-  admin_password            = var.windows_admin_password
-}
+#windows_profile {
+#  admin_username            = var.windows_admin_username
+#  admin_password            = var.windows_admin_password
+#}
 
 # Linux Profile
-linux_profile {
-  admin_username = "ubuntu"
-  ssh_key {
-      key_data = file(var.ssh_public_key)
-  }
-}
+#linux_profile {
+#  admin_username = "ubuntu"
+#  ssh_key {
+#      key_data = file(var.ssh_public_key)
+#  }
+#}
 
 # Network Profile
 network_profile {
